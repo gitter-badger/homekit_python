@@ -141,15 +141,14 @@ class TLV:
         if isinstance(d, dict):
             res = '{\n'
             for k in d.keys():
-                res += '  {k}: ({l} bytes) {v}\n'.format(k=k, v=d[k], l=len(d[k]))
+                res += '  {k}: ({s} bytes) {v}\n'.format(k=k, v=d[k], s=len(d[k]))
             res += '}\n'
         else:
             res = '[\n'
             for k in d:
-                res += '  {k}: ({l} bytes) {v}\n'.format(k=k[0], v=k[1], l=len(k[1]))
+                res += '  {k}: ({s} bytes) {v}\n'.format(k=k[0], v=k[1], s=len(k[1]))
             res += ']\n'
         return res
-
 
     @staticmethod
     def reorder(tlv_array, preferred_order):
@@ -175,4 +174,3 @@ class TLV:
 class TlvParseException(Exception):
     """Raised upon parse error with some TLV"""
     pass
-

@@ -132,11 +132,11 @@ class Controller(object):
                 data = json.load(input_fp)
                 for pairing_id in data:
                     self.pairings[pairing_id] = Pairing(data[pairing_id])
-        except PermissionError as e:
+        except PermissionError:
             raise ConfigLoadingError('Could not open "{f}" due to missing permissions'.format(f=filename))
-        except JSONDecodeError as e:
+        except JSONDecodeError:
             raise ConfigLoadingError('Cannot parse "{f}" as JSON file'.format(f=filename))
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             raise ConfigLoadingError('Could not open "{f}" because it does not exist'.format(f=filename))
 
     def save_data(self, filename):
@@ -153,9 +153,9 @@ class Controller(object):
         try:
             with open(filename, 'w') as output_fp:
                 json.dump(data, output_fp, indent='  ')
-        except PermissionError as e:
+        except PermissionError:
             raise ConfigSavingError('Could not write "{f}" due to missing permissions'.format(f=filename))
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             raise ConfigSavingError(
                 'Could not write "{f}" because it (or the folder) does not exist'.format(f=filename))
 
@@ -530,7 +530,7 @@ class Session(object):
                 conn.connect()
                 c2a_key, a2c_key = get_session_keys(conn, pairing_data)
                 connected = True
-            except Exception as e:
+            except Exception:
                 connected = False
         if not connected:
             # no connection yet, so ip / port might have changed and we need to fall back to slow zeroconf lookup

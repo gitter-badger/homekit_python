@@ -26,10 +26,10 @@ def setup_args_parser():
     parser = argparse.ArgumentParser(description='HomeKit identify app - performs identify on given HomeKit device')
 
     group = parser.add_argument_group('Identify unpaired', 'use this option to identify an UNPAIRED accessory.')
-    group.add_argument('-d', action='store',  dest='device', help='accessory pairing id')
+    group.add_argument('-d', action='store', dest='device', help='accessory pairing id')
 
     group = parser.add_argument_group('Identify paired', 'use this option to identify an PAIRED accessory.')
-    group.add_argument('-f', action='store',  dest='file', help='File with the pairing data')
+    group.add_argument('-f', action='store', dest='file', help='File with the pairing data')
     group.add_argument('-a', action='store', dest='alias', help='alias for the pairing')
 
     parsed_args = parser.parse_args()

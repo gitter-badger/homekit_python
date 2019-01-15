@@ -334,7 +334,7 @@ def get_session_keys(conn, pairing_data):
     response_tlv = TLV.reorder(response_tlv, [TLV.kTLVType_State, TLV.kTLVType_Error])
     assert response_tlv[0][0] == TLV.kTLVType_State and response_tlv[0][1] == TLV.M4, 'get_session_keys: not M4'
     if len(response_tlv) == 2 and response_tlv[1][0] == TLV.kTLVType_Error:
-        error_handler(response_tlv[1][1] , 'verification')
+        error_handler(response_tlv[1][1], 'verification')
 
     # calculate session keys
     hkdf_inst = hkdf.Hkdf('Control-Salt'.encode(), shared_secret, hash=hashlib.sha512)
