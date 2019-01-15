@@ -8,7 +8,6 @@ before_install:
     - pip install coveralls
     - pip install flake8
 script:
-  - flake8 --version
   - flake8 homekit
   - coverage run -m unittest -v
 after_success:
